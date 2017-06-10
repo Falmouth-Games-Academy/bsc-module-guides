@@ -1,14 +1,12 @@
-% Make variables available elsewhere in the document
-\makeatletter
-
-\let\moduleLeader\@moduleLeader
-\let\credits \@credits
-\let\moduleCode \@moduleCode
-
-\makeatother
-
 % Calculate total hours of study based on credits
 \FPeval{\totalHours}{clip(\credits * 10)}%
+
+%Setup beamer template variables for title slide
+\theModuleCode{\moduleCode}
+\theModuleName{\moduleName}
+\theModuleLeader{\moduleLeader}
+\theCredits{\credits}
+\isMandatory{\isCompulsory}
 
 \frame{\titlepage} 
 

@@ -1,14 +1,3 @@
-% Make variables available elsewhere in the document
-\makeatletter
-
-\let\moduleLeader\@moduleLeader
-\let\moduleName\@moduleName
-\let\moduleCode \@moduleCode
-\let\credits \@credits
-
-\makeatother
-
-% Calculate total hours of study based on credits
 \FPeval{\totalHours}{clip(\credits * 10)}%
 
 \section{\moduleCode --- \moduleName}
@@ -127,3 +116,4 @@
 	
 	Reading List: \\
 	\small\MakeLowercase{\protect\url{http://resourcelists.falmouth.ac.uk/modules/\moduleCode}}
+	
