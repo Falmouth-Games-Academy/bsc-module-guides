@@ -2,7 +2,11 @@
 
 \usepackage{avant} % A font similar to Century Gothic
 \usepackage{courier} % Courier font for code listings
-
+\usepackage{multimedia}
+\usepackage[nomessages]{fp}
+\usepackage{pgf, pgffor}
+\usepackage[none]{hyphenat}
+\usepackage{wasysym}
 \usepackage{graphicx}
 \usepackage{listings}
 \lstset{
@@ -60,6 +64,9 @@
 \newcommand{\@moduleCode}{COMPxxx}
 \newcommand{\moduleCode}[1]{\renewcommand{\@moduleCode}{#1}}
 
+\newcommand{\@moduleName}{New Computing Module}
+\newcommand{\moduleName}[1]{\renewcommand{\@moduleName}{#1}}
+
 \newcommand{\@moduleLeader}{Module leader here}
 \newcommand{\moduleLeader}[1]{\renewcommand{\@moduleLeader}{#1}}
 
@@ -68,6 +75,18 @@
 
 \newcommand{\@isCompulsory}{Compulsory}
 \newcommand{\isCompulsory}[1]{\renewcommand{\@isCompulsory}{#1}}
+
+% Year should be consistent and in one place
+\def\academicYear{2017-18}
+
+% Core learning objectives should not change between modules
+\def\learningOutcomes{
+	{Show a basic understanding of creative computing solutions using professional techniques.},
+	{Show a basic understanding of how to communicate effectively with stakeholders in writing, verbally and through adherence to coding standards.},
+	{Show a basic development of the ability to reflect critically on and evaluate working methods and solutions.},
+	{Show a basic understanding of the ability to conduct research, present knowledge in an academic format and apply that research to practice.},
+	{Show a basic understanding of how to approach computing problems to create innovative solutions.},
+	{Show a basic understanding of methods used to help set goals, manage workloads to meet deadlines and to work collaboratively.}}
 
 \setbeamertemplate{title page}{
     \begin{tikzpicture}[remember picture,overlay]
@@ -81,9 +100,9 @@
 		}
         \node[anchor=north east, xshift=-0.025\paperwidth, yshift=-40\PptPoint] at (current page.north east) {
 			\parbox[t]{0.95\paperwidth}{
-				\raggedleft\usebeamerfont{title}\textbf{\inserttitle}
+				\raggedleft\usebeamerfont{title}\textbf{\@moduleCode}
 				
-				\raggedleft\usebeamerfont{title}\textbf{\insertsubtitle}
+				\raggedleft\usebeamerfont{title}\textbf{\@moduleName}
 			}
 		};
         \node[anchor=south east, xshift=-0.025\paperwidth, yshift=40\PptPoint] at (current page.south east) {
@@ -91,13 +110,15 @@
 				\raggedleft\usebeamerfont{subtitle}\@credits\ credits
 
 				\raggedleft\usebeamerfont{subtitle}\@isCompulsory\ for BSc Computing for Games
+				
+				\raggedleft\usebeamerfont{subtitle}\@moduleLeader\ 
 			}
         };
         \node[anchor=south west, xshift=0.025\paperwidth, yshift=40\PptPoint] at (current page.south west) {
         	\begin{tabular}{c}
 	        	\includegraphics[width=0.15\paperwidth]{GamesLogoAt} \\
-				\includegraphics[width=0.15\paperwidth]{FalmouthLogo}
-			\end{tabular}
+		\includegraphics[width=0.15\paperwidth]{FalmouthLogo}
+	\end{tabular}
         };
         %\node[anchor=south east, xshift=-0.025\paperwidth, yshift=40\PptPoint] at (current page.south east) {
 		%	\parbox[t]{0.95\paperwidth}{\raggedleft\usebeamerfont{title}\textbf{\insertsubtitle}}
