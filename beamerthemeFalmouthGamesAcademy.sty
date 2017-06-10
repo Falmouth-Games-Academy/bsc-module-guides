@@ -9,57 +9,16 @@
 \usepackage{wasysym}
 \usepackage{graphicx}
 \usepackage{listings}
-\lstset{
-	basicstyle=\footnotesize\ttfamily,
-	frame=single,
-	tabsize=4,
-	showstringspaces=false,
-	breaklines=true,
-	prebreak={\space\hbox{\textcolor{Gray}{$\hookleftarrow$}}}
-}
+\usepackage{url}
 
-\iftoggle{printable}{
-	\lstset{
-		commentstyle=\ttfamily\textit,
-		keywordstyle=\ttfamily\textbf,
-		stringstyle=\ttfamily,
-		rulecolor=\color{Black}
-	}
-}{ % else
-	\lstset{
-		commentstyle=\color{LimeGreen}\ttfamily\textit,
-		keywordstyle=\color{SkyBlue}\ttfamily\textbf,
-		stringstyle=\color{Melon}\ttfamily,
-		rulecolor=\color{White}
-	}
-}
-
-%\setbeamercovered{transparent}
-
-\definecolor{GamesAcademyPurple}{rgb}{0.25,0.19,0.32}
-\definecolor{SubtitleGrey}{rgb}{0.53,0.53,0.53}
-
-\iftoggle{printable}{
-	\usecolortheme{default}
-	\setbeamercolor{normal text}{fg=black,bg=white}
-	\setbeamercolor{frametitle}{fg=black}
-	\setbeamercolor{itemize item}{fg=black}
-	\setbeamercolor{enumerate item}{fg=black}
-	\setbeamercolor{subtitle}{fg=black}
-}{ % else
-	\usecolortheme{albatross}
-	\setbeamercolor{normal text}{fg=white,bg=GamesAcademyPurple}
-	\setbeamercolor{frametitle}{fg=white}
-	\setbeamercolor{itemize item}{fg=white}
-	\setbeamercolor{enumerate item}{fg=white}
-	\setbeamercolor{subtitle}{fg=SubtitleGrey}
-}
-
-\newlength{\PptPoint}
-\setlength{\PptPoint}{0.5pt}
-\setbeamerfont{title}{size=\fontsize{40\PptPoint}{40\PptPoint}}
-\setbeamerfont{subtitle}{size=\fontsize{24\PptPoint}{24\PptPoint}}
-\setbeamerfont{frametitle}{size=\fontsize{40\PptPoint}{40\PptPoint}}
+% For handling loops inside tables - https://tex.stackexchange.com/questions/165126/how-do-i-use-the-ampersand-inside-a-foreach-or-conditional-or-other-group-e
+%\makeatletter
+\newtoks\@tabtoks
+\newcommand{\addtabtoks}[1]{\global\@tabtoks\expandafter{\the\@tabtoks#1}}
+\newcommand{\eaddtabtoks}[1]{\edef\mytmp{#1}\expandafter\addtabtoks\expandafter{\mytmp}}
+\newcommand*{\resettabtoks}{\global\@tabtoks{}}
+\newcommand*{\printtabtoks}{\the\@tabtoks}
+%\makeatother
 
 \newcommand{\@moduleCode}{COMPxxx}
 \newcommand{\moduleCode}[1]{\renewcommand{\@moduleCode}{#1}}
@@ -87,6 +46,60 @@
 	{Show a basic understanding of the ability to conduct research, present knowledge in an academic format and apply that research to practice.},
 	{Show a basic understanding of how to approach computing problems to create innovative solutions.},
 	{Show a basic understanding of methods used to help set goals, manage workloads to meet deadlines and to work collaboratively.}}
+
+\lstset{
+	basicstyle=\footnotesize\ttfamily,
+	frame=single,
+	tabsize=4,
+	showstringspaces=false,
+	breaklines=true,
+	prebreak={\space\hbox{\textcolor{Gray}{$\hookleftarrow$}}}
+}
+
+\iftoggle{printable}{
+	\lstset{
+		commentstyle=\ttfamily\textit,
+		keywordstyle=\ttfamily\textbf,
+		stringstyle=\ttfamily,
+		rulecolor=\color{Black}
+	}
+}{ % else
+	\lstset{
+		commentstyle=\color{LimeGreen}\ttfamily\textit,
+		keywordstyle=\color{SkyBlue}\ttfamily\textbf,
+		stringstyle=\color{Melon}\ttfamily,
+		rulecolor=\color{White}
+	}
+}
+
+%\setbeamercovered{transparent}
+
+\iftoggle{isBeamer}{
+
+\definecolor{GamesAcademyPurple}{rgb}{0.25,0.19,0.32}
+\definecolor{SubtitleGrey}{rgb}{0.53,0.53,0.53}
+
+\iftoggle{printable}{
+	\usecolortheme{default}
+	\setbeamercolor{normal text}{fg=black,bg=white}
+	\setbeamercolor{frametitle}{fg=black}
+	\setbeamercolor{itemize item}{fg=black}
+	\setbeamercolor{enumerate item}{fg=black}
+	\setbeamercolor{subtitle}{fg=black}
+}{ % else
+	\usecolortheme{albatross}
+	\setbeamercolor{normal text}{fg=white,bg=GamesAcademyPurple}
+	\setbeamercolor{frametitle}{fg=white}
+	\setbeamercolor{itemize item}{fg=white}
+	\setbeamercolor{enumerate item}{fg=white}
+	\setbeamercolor{subtitle}{fg=SubtitleGrey}
+}
+
+\newlength{\PptPoint}
+\setlength{\PptPoint}{0.5pt}
+\setbeamerfont{title}{size=\fontsize{40\PptPoint}{40\PptPoint}}
+\setbeamerfont{subtitle}{size=\fontsize{24\PptPoint}{24\PptPoint}}
+\setbeamerfont{frametitle}{size=\fontsize{40\PptPoint}{40\PptPoint}}
 
 \setbeamertemplate{title page}{
     \begin{tikzpicture}[remember picture,overlay]
@@ -163,4 +176,19 @@
 			\parbox[t]{0.9\paperwidth}{\raggedright\usebeamerfont{title}\textbf{\insertpart}}
         };
     \end{tikzpicture}
+}
+
+}{ %else
+
+\renewcommand{\chaptername}{Section}
+
+\pagestyle{ruled} % activate changes
+
+\addtopsmarks{headings}{}{
+   \createmark{chapter}{left}{nonumber}{}{}
+}
+\pagestyle{headings} % activate changes
+
+
+
 }

@@ -2,24 +2,22 @@
 \makeatletter
 
 \let\moduleLeader\@moduleLeader
-\let\credits \@credits
+\let\moduleName\@moduleName
 \let\moduleCode \@moduleCode
+\let\credits \@credits
 
 \makeatother
 
 % Calculate total hours of study based on credits
 \FPeval{\totalHours}{clip(\credits * 10)}%
 
-\frame{\titlepage} 
+\section{\moduleCode --- \moduleName}
 
-\begin{frame}
-	\frametitle{Introduction}
+\subsection{Introduction}
 	
 	\introduction
-\end{frame}
 
-\begin{frame}
-	\frametitle{Aims}
+	\subsection{Aims}
 	
 	This module aims to help you:
 	
@@ -28,9 +26,6 @@
 			\item \x	
 		}
 	\end{itemize}
-\end{frame}
-
-\begin{frame}
 	
 	% ASSESSMENT CRITERIA
 	\addtabtoks{\textbf{LO} & \textbf{Learning Outcomes} & \textbf{Assessment Criteria} \\}
@@ -59,10 +54,6 @@
 			\printtabtoks
 		\end{tabular}
 	\resettabtoks
-	
-\end{frame}
-
-\begin{frame}
 	
 	% MODULE LEADER
 	\addtabtoks{\textbf{Academic Staff} & \moduleLeader \\}
@@ -122,10 +113,7 @@
 		\vspace{2em}
 		Each study block represents 600-hours of study. This means that 40 hours of study per week (including contact time) is expected, alongside a further 120-hours of studio practice across the assessment period.
 
-\end{frame}
-
-\begin{frame}
-	\frametitle{Additional Resources}
+	\subsection{Additional Resources}
 	
 	Session Plans \& Materials: \\
 	\url{http://learningspace.falmouth.ac.uk/course/view.php?id=\learningSpaceID}
@@ -133,11 +121,9 @@
 	\vspace{1.5em}	
 	
 	Assignment Briefs: \\
-	\MakeLowercase{\url{http://github.com/Falmouth-Games-Academy/bsc-assignment-briefs/tree/\academicYear/\moduleCode}}
+	\MakeLowercase{\protect\url{http://github.com/Falmouth-Games-Academy/bsc-assignment-briefs/tree/\academicYear/\moduleCode}}
 	
 	\vspace{1.5em}
 	
 	Reading List: \\
-	\small\MakeLowercase{\url{http://resourcelists.falmouth.ac.uk/modules/\moduleCode}}
-
-\end{frame}
+	\small\MakeLowercase{\protect\url{http://resourcelists.falmouth.ac.uk/modules/\moduleCode}}
