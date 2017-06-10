@@ -3,6 +3,10 @@
 % Adjust these for the path of the theme and its graphics, relative to this file
 \usepackage{../beamerthemeFalmouthGamesAcademy}
 \usepackage{multimedia}
+\usepackage[nomessages]{fp}
+\usepackage{pgf, pgffor}
+\usepackage[none]{hyphenat}
+
 \graphicspath{ {../} }
 
 % Additional symbols
@@ -10,19 +14,69 @@
 
 \begin{document}
 
-\title{COMP110}
-\subtitle{Principles of Computing}
-\def\moduleLeader{Dr Edward Powley}
-\def\academicStaff{Dr Michael Scott}
+\moduleCode{COMP110}
+\moduleName{Principles of Computing}
+\moduleLeader{Dr Edward Powley}
+\def\academicStaff{Dr Michael Scott (Moderator)}
 \credits{20}
 \isCompulsory{Compulsory}
+
+\def\introduction{This module is designed to introduce you to the basic principles of computing in the context of digital games. It is designed to complement the other modules, providing a broad foundation on the theories, methods, models, and techniques in computing which will help you to construct computer programs and be able to make use of relevant scholarly sources.}
+
+\def\assignments{
+	{Worksheet Tasks, 80\%},
+	{Research Journal, 20\%}}
+
+\def\hours{
+	{Sessions, 36 hours},
+	{Directed Reading, 18 hours},
+	{Worksheet Tasks, 56 hours},
+	{Research Journal, 14 hours},
+	{Self-Directed Study, 36 hours},
+	{Self-Directed Studio Practice, 40 hours}}
+	
+\def\moduleAims{
+	{Understand the basic principles, terminology, roles, and software development concept that computing professionals apply within a game development context},
+	{Understand how to apply computing theory to practical programming activities},
+	{Understand how to conduct basic software development tasks}}
+	
+\def\moduleLearningOutcomes{1,2,3,4,6}
+	
+\def\assessmentCriteria{
+	{Demonstrate a basic understanding of computing fundamentals. Apply basic knowledge and understanding of the techniques used in software development. Understand the creative value of maker-style and iterative approaches for the generation of innovation.},
+	{Show a basic understanding of how to communicate effectively with stakeholders in writing, verbally, and through adherence to coding standards. Annotate software to communicate with others effectively.},
+	{Analyse critically the strengths and weaknesses of code and develop an ability to respond to the critical judgements of others.},
+	{Research and explain the use of methodologies used in computing, apply knowledge to practice, and present that knowledge where appropriate in an academic format.},
+	{},
+	{Set goals and manage workloads to meet deadlines using set methodologies and present ideas in a variety of situations with appropriate support.}}
+
+\def\learningSpaceID{1249}
+
+% Make variables available elsewhere in the document
+\makeatletter
+
+\let\moduleLeader\@moduleLeader
+\let\credits \@credits
+\let\moduleCode \@moduleCode
+
+% Calculate total hours of study based on credits
+\FPeval{\totalHours}{clip(\credits * 10)}%
+
+% For handling loops inside tables - https://tex.stackexchange.com/questions/165126/how-do-i-use-the-ampersand-inside-a-foreach-or-conditional-or-other-group-e
+\newtoks\@tabtoks
+\newcommand\addtabtoks[1]{\global\@tabtoks\expandafter{\the\@tabtoks#1}}
+\newcommand\eaddtabtoks[1]{\edef\mytmp{#1}\expandafter\addtabtoks\expandafter{\mytmp}}
+\newcommand*\resettabtoks{\global\@tabtoks{}}
+\newcommand*\printtabtoks{\the\@tabtoks}
+
+\makeatother
 
 \frame{\titlepage} 
 
 \begin{frame}
 	\frametitle{Introduction}
-	This module is designed to introduce you to the basic principles of computing in the context of digital games. It is designed to complement the other modules, providing a broad foundation on the theories, methods, models, and techniques in computing which will help you to construct computer programs and be able to make use of relevant scholarly sources.
 	
+	\introduction
 \end{frame}
 
 \begin{frame}
@@ -31,114 +85,104 @@
 	This module aims to help you:
 	
 	\begin{itemize}
-		\item Understand the basic principles, terminology, roles, and software development concept that computing professionals apply within a game development context 
-		\item Understand how to apply computing theory to practical programming activities
-		\item Understand how to conduct basic software development tasks
+		\foreach \x in \moduleAims{%
+			\item \x	
+		}
 	\end{itemize}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Learning Outcomes}
+	\frametitle{Learning Outcomes}	
 	
+	% ASSESSMENT CRITERIA
+	\addtabtoks{\textbf{LO} & \textbf{Learning Outcomes} & \textbf{Assessment Criteria} \\}
+	\foreach \x  in \moduleLearningOutcomes{%
+		
+		\eaddtabtoks{\x}	
+		\foreach \y[count=\yi] in \learningOutcomes{%
+			\ifnum\x=\yi\relax
+				\eaddtabtoks{& \y}	
+			\fi
+		}
+		
+		\foreach \y[count=\yi] in \assessmentCriteria{%
+			\ifnum\x=\yi\relax
+				\eaddtabtoks{& \y}	
+			\fi
+		}
+		\addtabtoks{\\}	
+	}
+	
+	% MAKE TABLE											
 	\centering
 		\tiny
 		\def\arraystretch{1.5}
 		\begin{tabular} { | p{.02\textwidth} | p{.45\textwidth} p{.45\textwidth} |}
-			%HEAD
- 			\textbf{LO} &
-			\textbf{Learning Outcomes} &  
-			\textbf{Assessment Criteria} \\
-
-			% OUTCOME 1
- 			1 &
-			Show a basic understanding of creative computing solutions using professional techniques  &  
-			Demonstrate a basic understanding of computing fundamentals. Apply basic knowledge and understanding of the techniques used in software development. Understand the creative value of maker-style and iterative approaches for the generation of innovation. \\
-			% OUTCOME 2
- 			2 &
-			Show a basic understanding of how to communicate effectively with stakeholders in writing, verbally and through adherence to coding standards &  
-			Show a basic understanding of how to communicate effectively with stakeholders in writing, verbally, and through adherence to coding standards. Annotate software to communicate with others effectively. \\
-			% OUTCOME 3
- 			3 &
-			Show a basic development of the ability to reflect critically on and evaluate working methods and solutions  & 
-			Analyse critically the strengths and weaknesses of code and develop an ability to respond to the critical judgements of others. \\
-			% OUTCOME 4
- 			4 &
-			Show a basic understanding of the ability to conduct research, present knowledge in an academic format and apply that research to practice  & 
-			Research and explain the use of methodologies used in computing, apply knowledge to practice, and present that knowledge where appropriate in an academic format. \\
-			% OUTCOME 6
- 			6 &
-			Show a basic understanding of methods used to help set goals, manage workloads to meet deadlines and to work collaboratively  & 
-			Set goals and manage workloads to meet deadlines using set methodologies and present ideas in a variety of situations with appropriate support. 
+			\printtabtoks
 		\end{tabular}
+	\resettabtoks
 	
 \end{frame}
 
 \begin{frame}
 	\frametitle{Overview}
 	
+	% MODULE LEADER
+	\addtabtoks{\textbf{Academic Staff} & \moduleLeader \\}
+		
+	% OTHER ACADEMIC STAFF
+	\foreach \x[count=\xi] in \academicStaff {%
+						
+		\eaddtabtoks{& \x &}
+		\addtabtoks{\\}
+	}
+		
+	\addtabtoks{&&\\}
+						
+	% ASSIGNMENTS
+	\foreach \x[count=\xi] in \assignments {%
+		
+		\ifnum\xi=1\relax
+			\addtabtoks{\textbf{Assignments}}	
+		\fi
+			
+		\foreach \y in \x {%
+			
+			\eaddtabtoks{& \y}
+		}
+		\addtabtoks{\\}
+	}
+		
+	\addtabtoks{&&\\}
+		
+	% HOURS
+	\foreach \x[count=\xi] in \hours {%
+		
+		\ifnum\xi=1\relax
+			\addtabtoks{\textbf{Indicative Hours}}	
+		\fi
+			
+		\foreach \y in \x {%
+			
+			\eaddtabtoks{& \y}
+		}
+		\addtabtoks{\\}
+	}
+		
+	\addtabtoks{& & \textbf{\totalHours\ hours}}
+	\addtabtoks{\\}
+			
+	% MAKE TABLE											
 	\centering
 		\tiny
 		\def\arraystretch{1.5}
-		\begin{tabular} { | p{.20\textwidth} | p{.4\textwidth} p{.25\textwidth} |}
-		
-			%MODULE LEADER
-			\textbf{Module Leader} &  
-			\moduleLeader &
-			\\
-
-			%TEACHING TEAM
-			\textbf{Academic Staff} &  
-			\academicStaff &
-			\\
-			
-			&&\\
-			
-			%ASSIGNMENTS
-			\textbf{Assignments} &  
-			Worksheet Tasks &
-			80\% \\
-			
-			%ASSIGNMENTS
-			&  
-			Research Journal &
-			20\% \\
-			
-			&&\\
-						
-			%Hours
-			\textbf{Indicative Hours} &  
-			Sessions &
-			36-hours \\
-			
-			%Hours
-			&
-			Directed Reading &
-			18-hours \\
-			
-			%Hours
-			&  
-			Worksheet Tasks &
-			56-hours \\
-			
-			%Hours
-			&
-			Research Journals &
-			14-hours \\
-									
-			%Hours
-			&
-			Self-Directed Computing Study &
-			36-hours \\
-			
-			%Hours
-			&
-			Self-Directed Portfolio Development &
-			40-hours \\
-			
+		\begin{tabular} { | p{.20\textwidth} | p{.5\textwidth} p{.1\textwidth} |}
+			\printtabtoks
 		\end{tabular}
-		
+	\resettabtoks
+	
+	\raggedright
 		\vspace{2em}
-		\raggedright
 		Each study block represents 600-hours of study. This means that 40 hours of study per week (including contact time) is expected, alongside a further 120-hours of studio practice across the assessment period.
 
 \end{frame}
@@ -147,17 +191,17 @@
 	\frametitle{Additional Resources}
 	
 	Session Plans \& Materials: \\
-	\url{http://learningspace.falmouth.ac.uk/}
+	\url{http://learningspace.falmouth.ac.uk/course/view.php?id=\learningSpaceID}
 	
 	\vspace{1.5em}	
 	
 	Assignment Briefs: \\
-	\url{https://github.com/Falmouth-Games-Academy/bsc-assignment-briefs}
-
-	\vspace{1.5em}	
+	\MakeLowercase{\url{http://github.com/Falmouth-Games-Academy/bsc-assignment-briefs/tree/\academicYear/\moduleCode}}
+	
+	\vspace{1.5em}
 	
 	Reading List: \\
-	\url{http://resourcelists.falmouth.ac.uk/index.html}
+	\small\MakeLowercase{\url{http://resourcelists.falmouth.ac.uk/modules/\moduleCode}}
 
 \end{frame}
 
