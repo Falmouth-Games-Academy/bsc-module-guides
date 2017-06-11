@@ -7,15 +7,24 @@
 
 \includegraphics[width=\textwidth]{GamesLogoAt}
 
-\input{comp110/data.tex}
-\input{handbook_template.tex}
+\def\moduleList{
+	comp110, 
+	comp120, 
+	comp150, 
+	comp140, 
+	comp130, 
+	comp210, 
+	comp220, 
+	comp230,
+	comp250, 
+	comp260,  
+	comp240}
 
-\newpage
-\input{comp120/data.tex}
-\input{handbook_template.tex}
+\foreach \x in \moduleList {
 
-\newpage
-\input{comp150/data.tex}
-\input{handbook_template.tex}
+	\input{\x/data.tex}
+	\input{handbook_template.tex}
+	\newpage
+}
 
 \end{document}
