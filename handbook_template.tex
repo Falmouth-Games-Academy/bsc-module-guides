@@ -1,51 +1,16 @@
 \FPeval{\totalHours}{clip(\credits * 10)}%
 
-\section{\moduleCode --- \moduleName}
+\includegraphics[height=3em]{GamesLogoAt}	
 
-\subsection{Introduction}
-	
-	\introduction
+\section{\moduleName}
 
-	\subsection{Aims}
+	% MODULE CODE
+	\addtabtoks{\textbf{Module Code} & \moduleCode\\}
 	
-	This module aims to help you:
-	
-	\begin{itemize}
-		\foreach \x in \moduleAims{%
-			\item \x	
-		}
-	\end{itemize}
-	
-	% ASSESSMENT CRITERIA
-	\addtabtoks{\textbf{LO} & \textbf{Learning Outcomes} & \textbf{Assessment Criteria} \\}
-	\foreach \x  in \moduleLearningOutcomes{%
-		
-		\eaddtabtoks{\x}	
-		\foreach \y[count=\yi] in \learningOutcomes{%
-			\ifnum\x=\yi\relax
-				\eaddtabtoks{& \y}	
-			\fi
-		}
-		
-		\foreach \y[count=\yi] in \assessmentCriteria{%
-			\ifnum\x=\yi\relax
-				\eaddtabtoks{& \y}	
-			\fi
-		}
-		\addtabtoks{\\}	
-	}
-	
-	% MAKE TABLE											
-	\centering
-		\tiny
-		\def\arraystretch{1.5}
-		\begin{tabular} { | p{.02\textwidth} | p{.45\textwidth} p{.45\textwidth} |}
-			\printtabtoks
-		\end{tabular}
-	\resettabtoks
-	
+	\addtabtoks{&&\\}
+
 	% MODULE LEADER
-	\addtabtoks{\textbf{Academic Staff} & \moduleLeader \\}
+	\addtabtoks{\textbf{Module Leader} & \moduleLeader & \\}
 		
 	% OTHER ACADEMIC STAFF
 	\foreach \x[count=\xi] in \academicStaff {%
@@ -90,30 +55,63 @@
 	\addtabtoks{\\}
 			
 	% MAKE TABLE											
-	\centering
-		\tiny
-		\def\arraystretch{1.5}
-		\begin{tabular} { | p{.20\textwidth} | p{.5\textwidth} p{.1\textwidth} |}
+	\begin{center}
+		\footnotesize
+		\def\arraystretch{1.3}
+		\begin{tabular} { | p{.23\textwidth} | p{.63\textwidth} p{.14\textwidth} |}
+			\printtabtoks
+		\end{tabular}
+	\end{center}
+	\resettabtoks
+	
+	\newpage
+	
+	\subsection{Introduction}
+	
+	\introduction
+	
+	\subsection{Aims}
+	
+	This module aims to help you:
+	
+	\begin{itemize}
+		\foreach \x in \moduleAims{%
+			\item \x	
+		}
+	\end{itemize}
+
+	\subsection{Resource List}
+	\MakeLowercase{\protect\url{http://resourcelists.falmouth.ac.uk/modules/\moduleCode}}
+
+	\subsection{Learning Space}
+	\url{http://learningspace.falmouth.ac.uk/course/view.php?id=\learningSpaceID}
+		
+	% ASSESSMENT CRITERIA
+	\addtabtoks{\textbf{LO} & \textbf{Learning Outcomes} & \textbf{Assessment Criteria} \\}
+	\foreach \x  in \moduleLearningOutcomes{%
+		
+		\eaddtabtoks{\x}	
+		\foreach \y[count=\yi] in \learningOutcomes{%
+			\ifnum\x=\yi\relax
+				\eaddtabtoks{& \y}	
+			\fi
+		}
+		
+		\foreach \y[count=\yi] in \assessmentCriteria{%
+			\ifnum\x=\yi\relax
+				\eaddtabtoks{& \y}	
+			\fi
+		}
+		\addtabtoks{\\}	
+	}
+		
+	% MAKE TABLE											
+	\begin{center}
+		\footnotesize
+		\def\arraystretch{2}
+		\begin{tabular} { | P{.05\textwidth} | p{.45\textwidth} p{.45\textwidth} |}
 			\printtabtoks
 		\end{tabular}
 	\resettabtoks
-	
-	\raggedright
-		\vspace{2em}
-		Each study block represents 600-hours of study. This means that 40 hours of study per week (including contact time) is expected, alongside a further 120-hours of studio practice across the assessment period.
-
-	\subsection{Additional Resources}
-	
-	Session Plans \& Materials: \\
-	\url{http://learningspace.falmouth.ac.uk/course/view.php?id=\learningSpaceID}
-	
-	\vspace{1.5em}	
-	
-	Assignment Briefs: \\
-	\MakeLowercase{\protect\url{http://github.com/Falmouth-Games-Academy/bsc-assignment-briefs/tree/\academicYear/\moduleCode}}
-	
-	\vspace{1.5em}
-	
-	Reading List: \\
-	\small\MakeLowercase{\protect\url{http://resourcelists.falmouth.ac.uk/modules/\moduleCode}}
+	\end{center}
 	

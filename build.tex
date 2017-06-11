@@ -1,25 +1,159 @@
-\documentclass{memoir}\usepackage{etoolbox}\newtoggle{printable}\toggletrue{printable}\newtoggle{isBeamer}\togglefalse{isBeamer}
+\documentclass[10pt,a5paper, twoside, openright]{memoir}\usepackage{etoolbox}\newtoggle{printable}\toggletrue{printable}\newtoggle{isBeamer}\togglefalse{isBeamer}
 \usepackage{beamerthemeFalmouthGamesAcademy}
+
+\usepackage{url}
+\makeatletter
+\g@addto@macro{\UrlBreaks}{\UrlOrds}
+\makeatother
+
+\makeatletter
+\newcommand\thickhrulefill{\leavevmode \leaders \hrule height 1ex \hfill \kern \z@}
+\setlength\midchapskip{10pt}
+
+\makechapterstyle{VZ14}{
+\renewcommand\chapternamenum{}
+\renewcommand\printchaptername{}
+%\renewcommand\chapnamefont{\Large\scshape}
+\renewcommand\printchapternum{%
+\chapnamefont\null\thickhrulefill\quad
+\@chapapp\space\thechapter\quad\thickhrulefill}
+\renewcommand\printchapternonum{%
+\par\thickhrulefill\par\vskip\midchapskip
+\hrule\vskip\midchapskip
+}
+\renewcommand\chaptitlefont{\Huge\centering}
+\renewcommand\afterchapternum{%
+\par\nobreak\vskip\midchapskip\hrule\vskip\midchapskip}
+\renewcommand\afterchaptertitle{%
+\par\vskip\midchapskip\hrule\nobreak\vskip\afterchapskip}
+}
+\makeatother
+\chapterstyle{VZ14}
+
+%% BEGIN TITLE
+
+\author{Falmouth University Games Academy}
+\title{BSc(Hons) Computing for Games}
+\date{2017-18}
+
+%\renewcommand{\chaptername}{Section}
+%\renewcommand\cftchapteraftersnumb{\normalfont}
+\textwidth=9cm
+
+\setsecnumdepth{chapter}
+\setlength{\parindent}{0em}
+
+\renewcommand{\chaptername}{Section}
+
+%\pagestyle{ruled} % activate changes
+
+\addtopsmarks{headings}{}{
+   \createmark{chapter}{left}{nonumber}{}{}
+}
+\pagestyle{headings} % activate changes
+
+%\renewcommand\cftbeforechapterskip{10pt plus 1pt}
+
+\usepackage{pdfcolmk}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{pifont}
+
+\usepackage{avant}
+\renewcommand{\familydefault}{\sfdefault}
+
+%% select a (FontSite) font by its font family ID
+%\def\drop{1}
+\newcommand*{\FSfont}[1]{\fontencoding{T1}\fontfamily{#1}\selectfont}
+
+\newcommand*{\plogo}{\fbox{$\mathcal{PL}$}}
+
+\newcommand*{\titleRF}{\begingroup% Robert Frost, T&H p 149
+\thispagestyle{empty}
+%\FSfont{2bp} % FontSite Bergamo (Bembo)
+\drop = 0.2\textheight
+\centering
+\vfill\null
+{\huge BSc(Hons) Computing for Games}\\[\baselineskip]
+{\Huge Student Handbook}\\[\baselineskip]
+{\large 2017-18}\\[0.5\drop]
+\vfill\null
+{\includegraphics[height=4em]{GamesLogoAt}	
+\includegraphics[height=2em]{FalmouthLogo}}\\[0.5\baselineskip]
+\endgroup}
+
+\newlength{\drop}% for my convenience
+
+%%% BEGIN DOCUMENT
 
 \begin{document}
 
-\chapter{Module Guides}
 
-\includegraphics[width=\textwidth]{GamesLogoAt}
+\let\cleardoublepage\clearpage
+
+\titleRF
+\newpage
+
+\frontmatter
+
+\null\vfill
+
+\begin{small}
+\begin{flushleft}
+\textit{BSc(Hons) Computing for Games --- Student Handbook}
+
+\copyright  2017 Falmouth University. All rights reserved.
+
+\bigskip
+
+DOI: \url{10.13140/2.1.3680.9281}
+
+\vspace{3em}
+
+\includegraphics[height=2em]{ccbyncnd4-88x31}	
+
+\footnotesize This work may be distributed and/or modified under the conditions of the Creative Commons BY-NC-SA 4.0 license. The latest version is available in:
+
+\smallskip
+
+\begin{scriptsize}
+\url{https://github.com/Falmouth-Games-Academy/bsc-module-guides}
+\end{scriptsize}
+
+\end{flushleft}
+\end{small}
+
+%\let\cleardoublepage\clearpage
+%\newpage
+
+\mainmatter
+
+\begin{small}
+	\tableofcontents
+\end{small}
+
+\chapter{Study Block I}
+\newpage
 
 \def\moduleList{
 	comp110, 
 	comp120, 
-	comp150, 
-	comp140, 
-	comp130, 
-	comp210, 
-	comp220, 
-	comp230,
-	comp250, 
-	comp260,  
-	comp240}
+	comp150}
+	 
+\foreach \x in \moduleList {
 
+	\input{\x/data.tex}
+	\input{handbook_template.tex}
+	\newpage
+}
+	
+\chapter{Study Block II}
+\newpage
+	
+\def\moduleList{	   
+	comp140, 
+	comp130}
+	
 \foreach \x in \moduleList {
 
 	\input{\x/data.tex}

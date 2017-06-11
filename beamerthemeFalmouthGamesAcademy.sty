@@ -20,6 +20,9 @@
 \newcommand*{\printtabtoks}{\the\@tabtoks}
 %\makeatother
 
+%table coloum centering
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+
 \newcommand{\@moduleCode}{COMPxxx}
 \newcommand{\theModuleCode}[1]{\renewcommand{\@moduleCode}{#1}}
 
@@ -179,16 +182,4 @@
 }
 
 }{ %else
-
-\renewcommand{\chaptername}{Section}
-
-\pagestyle{ruled} % activate changes
-
-\addtopsmarks{headings}{}{
-   \createmark{chapter}{left}{nonumber}{}{}
-}
-\pagestyle{headings} % activate changes
-
-
-
 }
