@@ -1,5 +1,23 @@
-\documentclass[10pt,a5paper, twoside, openright]{memoir}\usepackage{etoolbox}\newtoggle{printable}\toggletrue{printable}\newtoggle{isBeamer}\togglefalse{isBeamer}
+\documentclass[10pt, twoside, openright]{memoir}\usepackage{etoolbox}\newtoggle{printable}\toggletrue{printable}\newtoggle{isBeamer}\togglefalse{isBeamer}
+\usepackage{geometry}
+\geometry {
+	a5paper,
+	top=100pt,
+	bindingoffset=16mm
+}
+
 \usepackage{beamerthemeFalmouthGamesAcademy}
+
+\newenvironment{changemargin}[2]{%
+\begin{list}{}{%
+%\setlength{\topsep}{0pt}%
+\setlength{\leftmargin}{#1}%
+\setlength{\rightmargin}{#2}%
+\setlength{\listparindent}{\parindent}%
+\setlength{\itemindent}{\parindent}%
+\setlength{\parsep}{\parskip}%
+}%
+\item[]}{\end{list}}
 
 \usepackage{url}
 \makeatletter
@@ -68,16 +86,17 @@
 
 \newcommand*{\plogo}{\fbox{$\mathcal{PL}$}}
 
-\newcommand*{\titleRF}{\begingroup% Robert Frost, T&H p 149
-\thispagestyle{empty}
+\newcommand*{\titleRF}{
+%\thispagestyle{titlepage}
+\begingroup% Robert Frost, T&H p 149
 %\FSfont{2bp} % FontSite Bergamo (Bembo)
 \drop = 0.2\textheight
 \centering
-\vfill\null
-{\huge BSc(Hons) Computing for Games}\\[\baselineskip]
+{\vspace{1cm}
+\huge BSc(Hons) Computing for Games}\\[\baselineskip]
 {\Huge Student Handbook}\\[\baselineskip]
 {\large 2017-18}\\[0.5\drop]
-\vfill\null
+\vfill
 {\includegraphics[height=4em]{GamesLogoAt}	
 \includegraphics[height=2em]{FalmouthLogo}}\\[0.5\baselineskip]
 \endgroup}
@@ -90,11 +109,14 @@
 
 
 \let\cleardoublepage\clearpage
-
+\begin{titlingpage}
 \titleRF
+\end{titlingpage}
 \newpage
 
 \frontmatter
+
+\begin{changemargin}{-1.5cm}{0cm}
 
 \null\vfill
 
@@ -116,21 +138,23 @@ DOI: \url{10.13140/2.1.3680.9281}
 
 \smallskip
 
-\begin{scriptsize}
+%\begin{scriptsize}
 \url{https://github.com/Falmouth-Games-Academy/bsc-module-guides}
-\end{scriptsize}
+%\end{scriptsize}
 
 \end{flushleft}
 \end{small}
 
-%\let\cleardoublepage\clearpage
-%\newpage
+\end{changemargin}
 
-\mainmatter
+%\let\cleardoublepage\clearpage
+\newpage
 
 \begin{small}
 	\tableofcontents
 \end{small}
+
+\mainmatter
 
 \chapter{Study Block I}
 \newpage
