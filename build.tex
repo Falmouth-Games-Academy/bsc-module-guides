@@ -1,23 +1,6 @@
-\documentclass[10pt, twoside, openright]{memoir}\usepackage{etoolbox}\newtoggle{printable}\toggletrue{printable}\newtoggle{isBeamer}\togglefalse{isBeamer}
-\usepackage{geometry}
-\geometry {
-	a5paper,
-	top=100pt,
-	bindingoffset=16mm
-}
-
+\documentclass[10pt, a5paper, twoside, openright, titlepage]{memoir}\usepackage{etoolbox}\newtoggle{printable}\toggletrue{printable}\newtoggle{isBeamer}\togglefalse{isBeamer}
+\usepackage[top=100pt, bindingoffset=18mm, heightrounded]{geometry}
 \usepackage{beamerthemeFalmouthGamesAcademy}
-
-\newenvironment{changemargin}[2]{%
-\begin{list}{}{%
-%\setlength{\topsep}{0pt}%
-\setlength{\leftmargin}{#1}%
-\setlength{\rightmargin}{#2}%
-\setlength{\listparindent}{\parindent}%
-\setlength{\itemindent}{\parindent}%
-\setlength{\parsep}{\parskip}%
-}%
-\item[]}{\end{list}}
 
 \usepackage{url}
 \makeatletter
@@ -107,17 +90,14 @@
 
 \begin{document}
 
-
-\let\cleardoublepage\clearpage
-\begin{titlingpage}
+%\begin{titlingpage}
+%\let\cleardoublepage\newpage
+\thispagestyle{empty}
 \titleRF
-\end{titlingpage}
-\newpage
+\pagebreak
+%\end{titlingpage}
 
-\frontmatter
-
-\begin{changemargin}{-1.5cm}{0cm}
-
+\thispagestyle{empty}
 \null\vfill
 
 \begin{small}
@@ -145,15 +125,44 @@ DOI: \url{10.13140/2.1.3680.9281}
 \end{flushleft}
 \end{small}
 
-\end{changemargin}
+%\end{changemargin}
 
 %\let\cleardoublepage\clearpage
-\newpage
+
+\frontmatter
 
 \begin{small}
+	\addtolength{\voffset}{-3.2cm}
+	\addtolength{\textheight}{3.2cm}
 	\tableofcontents
 \end{small}
 
+\newpage
+
+\section*{External Examiner's Comments}
+\addcontentsline{toc}{chapter}{Forward}
+
+Now in its second year, the \textit{BSc Computing for Games} course is holding up well. The team have made a number of small improvements to help the incoming students while the pioneers continue. The second-year modules are quite varied in scope and interesting in content. I am amazed students get the to design and make a MUD here! I love this! What a great idea for teaching distributed systems.\\
+
+The relevancy of computing is on an upwards trajectory. All the while, the currency of the Falmouth award exceeds that of awards at similar institutions. \\
+
+Employability is written through the degree like Falmouth in a stick of rock. This is a major selling point, and what makes Falmouth's offering so distinctive. Students are treated as if they are already working in a studio. This approach is quite demanding on students, but they are all the better for it. Graduates will have been working in a system sufficiently similar to that of the games industry that it is as if they have years of employment to their credit already. \\
+
+There is some excellent teaching at Falmouth. Assessments are well designed and the marking is fair. It is also of an astonishingly high quality. I hope the students appreciate this, because it really is an order of magnitude better than what I typically see elsewhere.
+
+\bigskip
+
+\begin{flushright}
+
+--- Professor Richard Bartle, \\
+Essex University
+
+\bigskip
+
+Co-creator of \textit{MUD1}
+\end{flushright}
+
+%\clearpage
 \mainmatter
 
 \chapter{Study Block I}
