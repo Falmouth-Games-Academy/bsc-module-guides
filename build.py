@@ -4,7 +4,11 @@ repo.lookup_reference("HEAD").resolve()
 head = repo.head
 head_name = head.shorthand
 
-from pathlib2 import Path
+try:
+    from pathlib2 import Path # Python 2
+except ImportError:
+    from pathlib import Path  # Python 3
+
 import os
 import subprocess
 
@@ -18,7 +22,10 @@ for d in directory_list:
         os.remove(str(f))
 
     for i in range(2):
-        subprocess.Popen('pdflatex build.tex -jobname=' + str(head_name) + '-' + str(d) + '-' + 'module-guide', cwd = working_directory).wait()
+        subprocess.Popen(['pdflatex',
+                          '-jobname=' + str(head_name) + '-' + str(d) + '-' + 'module-guide',
+                          'build.tex'],
+                         cwd = working_directory).wait()
 
     old_files = []
     for e in ['*.aux','*.out','*.nav','*.log','*.snm','*.toc']:
